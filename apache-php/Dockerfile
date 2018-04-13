@@ -9,7 +9,7 @@ RUN apt-get -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php php-mysql php-gd php-curl
 
 # Enable apache mods.
-RUN a2enmod openssl
+RUN a2enmod ssl
 RUN a2enmod php
 RUN a2enmod rewrite
 
