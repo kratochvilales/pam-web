@@ -11,4 +11,4 @@ RUN apt-get install mariadb-server -y
 
 EXPOSE 3306
 
-CMD /usr/bin/mysqld &&
+CMD /usr/sbin/mysqld &
