@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+        db:
+         image: mysql
+         container_name: lamp_mysql
+         environment:
+          MYSQL_ROOT_PASSWORD: my_secret_pw_shh
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: devuser
+          MYSQL_PASSWORD: devpass
+         ports:
+          - "9906:3306"
+         volumes:
+          - /opt/docker/aleskratochvil/mysql/var/lib/mysql:/var/lib/mysql
+
+        web:
+         build: apache
+         container_name: lamp_apache
+         depends_on:
+          - db
+         volumes:
+          - /opt/docker/aleskratochvil/www/:/usr/local/apache2/htdocs
+         ports:
+          - "80:80"
+          - "443:443"
