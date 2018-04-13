@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php
 
 # Enable apache mods.
 RUN a2enmod ssl
-RUN a2enmod php
+RUN a2enmod php7.0
 RUN a2enmod rewrite
 
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
