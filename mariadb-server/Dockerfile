@@ -8,12 +8,7 @@ ENV MYSQL_USER=mysql \
     MYSQL_RUN_DIR=/run/mysqld \
     MYSQL_LOG_DIR=/var/log/mysql
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && rm -rf ${MYSQL_DATA_DIR} && rm -rf /var/lib/apt/lists/*
-
-COPY entrypoint.sh /sbin/entrypoint.sh
-RUN chmod 755 /sbin/entrypoint.sh
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3306/tcp
-VOLUME ["${MYSQL_DATA_DIR}", "${MYSQL_RUN_DIR}"]
-ENTRYPOINT ["/sbin/entrypoint.sh"]
-CMD ["/usr/bin/mysqld_safe"]
+CMD [" /usr/bin/mysqld_safe >/dev/null 2>&1 &"]
