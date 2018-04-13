@@ -1,21 +1,16 @@
 version: '3.1'
 services:
         db:
-         image: mysql
-         container_name: lamp_mysql
-         environment:
-          MYSQL_ROOT_PASSWORD: my_secret_pw_shh
-          MYSQL_DATABASE: test_db
-          MYSQL_USER: devuser
-          MYSQL_PASSWORD: devpass
+         build: mariadb-server
+         container_name: mariadb-server
          ports:
           - "9906:3306"
          volumes:
           - /opt/docker/aleskratochvil/mysql/var/lib/mysql:/var/lib/mysql
 
         web:
-         build: apache
-         container_name: lamp_apache
+         build: apache-php
+         container_name: apache-php
          depends_on:
           - db
          volumes:

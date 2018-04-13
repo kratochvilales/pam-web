@@ -1,7 +1,6 @@
 #apache-php
 
 FROM debian
-MAINTAINER Ales Kratochvil <ales.kratochvil@gmail.com>
 
 RUN apt-get update
 RUN apt-get -y upgrade
