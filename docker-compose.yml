@@ -13,6 +13,9 @@ services:
   web:
       build: apache-php
       container_name: apache-php
+      environment:
+      ENV http_proxy http://10.254.0.18:81
+      ENV https_proxy http://10.254.0.18:81
       depends_on:
       - mariadb
       volumes:
