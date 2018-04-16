@@ -10,3 +10,14 @@ services:
       MYSQL_PASSWORD: devpass
     ports:
       - "9906:3306"
+  web:
+      build: apache-php
+      container_name: apache-php
+      depends_on:
+      - mariadb
+      volumes:
+      - /opt/docker/www/:/usr/local/apache2/htdocs
+      ports:
+      - "80:80"
+      - "443:443"
+    
