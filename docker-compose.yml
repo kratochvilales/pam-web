@@ -1,12 +1,17 @@
 version: '3.1'
 services:
         db:
-         build: mariadb-server
-         container_name: mariadb-server
+         image: mariadb
+         restart: always
+         environment:
+         MYSQL_ROOT_PASSWORD: root
+         MYSQL_USER: admin
+         MYSQL_PASSWORD: test
+         MYSQL_DATABASE: database
          ports:
-          - "9906:3306"
-         volumes:
-          - /opt/docker/aleskratochvil/mysql/var/lib/mysql:/var/lib/mysql
+         - "8889:3306"
+        volumes:
+       - /opt/docker/db:/var/lib/mysql
 
         web:
          build: apache-php
@@ -14,7 +19,7 @@ services:
          depends_on:
           - db
          volumes:
-          - /opt/docker/aleskratochvil/www/:/usr/local/apache2/htdocs
+          - /opt/docker/www/:/usr/local/apache2/htdocs
          ports:
           - "80:80"
           - "443:443"
